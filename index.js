@@ -7,6 +7,8 @@ import connection from "./db/connectDb.js";
 import mongoose from "mongoose";
 const app = express();
 import path from "path";
+const __dirname = path.resolve();
+import * as fs from "node:fs/promises";
 const comman = async () => {
   try {
     const DATABASE_URL = process.env.DATABASE_URL;
@@ -20,7 +22,18 @@ const comman = async () => {
     });
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
-    app.use("/uploads", express.static("uploads"));
+    app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+    fs.mkdir("C:/Users/sunil/Desktop/new FDF/backend/uploads", {
+      recursive: true,
+    })
+      .then(() => {
+        console.log("Temporary folder created successfully!");
+      })
+      .catch((err) => {
+        console.error("Failed to create temporary folder:", err);
+      });
+    console.log(__dirname);
 
     const port = process.env.PORT || "8080";
     app.use("/", web);
