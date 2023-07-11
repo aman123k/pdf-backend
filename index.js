@@ -6,7 +6,8 @@ import web from "./routers/web.js";
 import connection from "./db/connectDb.js";
 import mongoose from "mongoose";
 const app = express();
-
+import path from "path";
+const __dirname = path.resolve();
 const comman = async () => {
   try {
     const DATABASE_URL = process.env.DATABASE_URL;
@@ -20,7 +21,7 @@ const comman = async () => {
     });
     app.use(cors());
     app.use(express.urlencoded({ extended: false }));
-    app.use("/uploads", express.static("uploads"));
+    app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
     const port = process.env.PORT || "8080";
     app.use("/", web);
