@@ -24,16 +24,16 @@ const comman = async () => {
     app.use(express.urlencoded({ extended: false }));
     app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-    fs.mkdir("C:/Users/sunil/Desktop/new FDF/backend/uploads", {
-      recursive: true,
-    })
-      .then(() => {
-        console.log("Temporary folder created successfully!");
-      })
-      .catch((err) => {
-        console.error("Failed to create temporary folder:", err);
-      });
-    console.log(__dirname);
+    // fs.mkdir("C:/Users/sunil/Desktop/new FDF/backend/uploads", {
+    //   recursive: true,
+    // })
+    //   .then(() => {
+    //     console.log("Temporary folder created successfully!");
+    //   })
+    //   .catch((err) => {
+    //     console.error("Failed to create temporary folder:", err);
+    //   });
+    // console.log(__dirname);
 
     const port = process.env.PORT || "8080";
     app.use("/", web);
