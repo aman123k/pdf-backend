@@ -24,16 +24,7 @@ const stopSequences = [];
 
 router.post("/", upload.single("file"), async (req, res) => {
   const filePath = req.file.path;
-  fs.mkdir(`C:/Users/sunil/Desktop/new FDF/backend/${filePath}`, {
-    recursive: true,
-  })
-    .then(() => {
-      console.log("Temporary folder created successfully!");
-    })
-    .catch((err) => {
-      console.error("Failed to create temporary folder:", err);
-    });
-  console.log(__dirname);
+  console.log(filePath);
   pdfExtract.extract(filePath, options, async (err, data) => {
     if (err) throw err;
     const text = await extractStrings(data.pages);
